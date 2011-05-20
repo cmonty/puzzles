@@ -5,7 +5,7 @@ class Conversion
   attr_accessor :factor
 
   def initialize(opts)
-    doc = Nokogiri::XML(open('rates.xml'))
+    doc = Nokogiri::XML(open('assets/rates.xml'))
     doc.css('rate').each do |node|
       if node.search('from').first.content == opts[:from] and node.search('to').first.content == opts[:to]
         @factor = node.search('conversion').first.content.to_f
@@ -37,7 +37,7 @@ class Records
   def self.read(product)
     trans = Array.new
 
-    CSV.foreach 'trans.csv', :headers => :first_row, :return_headers => false do |row|
+    CSV.foreach 'assets/trans.csv', :headers => :first_row, :return_headers => false do |row|
       trans << row['amount'] if row["sku"] == product
     end
     
