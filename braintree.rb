@@ -1,22 +1,20 @@
-
 class BrainTree
   
   def self.luhn?(n)
-    s, double = 0, false
+    sum = 0
 
-    n.reverse.chars do |c|
+    n.reverse.chars.with_index do |c, i|
       d = c.to_i
-
-      if double
+      
+      if i % 2 == 1
         d *= 2
         d -= 9 if d > 9
       end
       
-      s += d
-      double = !double
+      sum += d
     end
     
-    s % 10 == 0
+    sum % 10 == 0
   end
 
   def self.ccexp?(d)
@@ -50,13 +48,13 @@ class BrainTree
     sum
   end
 
-  def self.morse(s)
+  def self.morse(str)
     code = %w[.- -... -.-. -.. . ..-. --. .... .. .--- -.- .-.. -- -. --- .--. --.- .-. ... - ..- ...- .-- -..- -.-- --..]
 
     26.times do |i|
-      s.gsub!(/#{(97+i).chr}/i, code[i])
+      str.gsub!(/#{(97+i).chr}/i, code[i])
     end
-    s
+    str
   end
 
   def self.mask(s)

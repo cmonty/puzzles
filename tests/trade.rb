@@ -1,4 +1,4 @@
-require '../trade'
+require_relative '../trade'
 require 'test/unit'
 
 class TradeTests < Test::Unit::TestCase

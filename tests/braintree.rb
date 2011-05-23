@@ -1,4 +1,4 @@
-require '../braintree'
+require_relative '../braintree'
 require 'test/unit'
 
 class BrainTreeTests < Test::Unit::TestCase
